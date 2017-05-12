@@ -58,9 +58,10 @@ app.post('/upload', upload.single('capture'), function (req, res, next) {
 
   var base64data = fs.createReadStream(req.file.path);
 
-  _upload2.default.upload_file_to_s3(base64data, req.file.originalname).then(function () {
+  _upload2.default.upload_file_to_s3(base64data, 'test.jpg').then(function (url) {
     console.log('done');
-    res.write('done!');
+    // res.send(__dirname + '/../client/image.html');
+    res.end('<html><head></head><body><img src="' + url + '" /></body></html>');
   });
 
   // if(!req.body.hasOwnProperty('img') ||
