@@ -49,7 +49,13 @@ app.post('/upload', upload.single('capture'), function (req, res, next) {
 
 app.get('/upload', function (req, res) {
 
-    res.send('<html><head></head><body><img src="https://s3.amazonaws.com/fb-selfie-explore/test.jpg" /></body></html>');
+    res.send('<html><head>' +
+        '<meta property="og:url"                content="fb-selfie-explore.herokuapp.com/upload" />' +
+        '<meta property="og:type"               content="article" />' +
+        '<meta property="og:title"              content="My image to share" />' +
+        '<meta property="og:description"        content="shared image" />' +
+        '<meta property="og:image"              content="https://s3.amazonaws.com/fb-selfie-explore/test.jpg?timestamp='+Date.now()+'" />' +
+        '</head><body><img src="https://s3.amazonaws.com/fb-selfie-explore/test.jpg?timestamp='+Date.now()+'" /></body></html>');
 });
 
 server.listen(port, () => {
