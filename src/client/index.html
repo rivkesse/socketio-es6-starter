@@ -7,16 +7,37 @@
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
-    <div class="chatbox" id="chatbox">
-        <ul id="chatList" class="chat-list"></ul>
-        <input id="chatInput" type="text" class="chat-input" placeholder="Chat here..." maxlength="35" />
+
+
+    <form action="/upload" method="post" id="imageForm" enctype="multipart/form-data">
+        <input type="file" accept="image/*" id="capture" name="capture" capture="camera" onchange="this.form.submit()" >
+
+        <input type="submit" value="SUBMIT" />
+    </form>
+
+
+
+<!--  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+            <h2>File Uploader</h2>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+            <button class="btn btn-lg upload-btn" type="button">Upload File</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="startMenu">
-        <input type="text" tabindex="0" autofocus placeholder="Enter your name here" id="userNameInput" maxlength="25" />
-        <b class="input-error">Nick must be alphanumeric characters only!</b>
-        <br />
-        <a><button id="startButton">Chat</button></a>
-    </div>
+  </div>
+
+  <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+ -->
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/client.js"></script>
 </body>
 </html>
