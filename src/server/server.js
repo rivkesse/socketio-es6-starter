@@ -49,7 +49,7 @@ app.post('/upload', upload.single('capture'), function (req, res, next) {
 
 app.get('/upload', function (req, res) {
 
-    res.end('<html><head></head><body><img src="https://s3.amazonaws.com/fb-selfie-explore/test.jpg" /></body></html>');
+    res.send('<html><head></head><body><img src="https://s3.amazonaws.com/fb-selfie-explore/test.jpg" /></body></html>');
 });
 
 server.listen(port, () => {

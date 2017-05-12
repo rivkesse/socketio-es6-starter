@@ -45,63 +45,31 @@ app.use(_express2.default['static'](__dirname + '/../client'));
 
 app.post('/index', _bodyParser2.default.json(), function (req, res) {
 
-  console.log(req.files);
+    console.log(req.files);
 
-  res.write('uploaded!', req);
+    res.write('uploaded!', req);
 
-  // res.render('index.html');
+    // res.render('index.html');
 });
 
 app.post('/upload', upload.single('capture'), function (req, res, next) {
 
-  console.log(req.file.name, req.file);
+    console.log(req.file.name, req.file);
 
-  var base64data = fs.createReadStream(req.file.path);
+    var base64data = fs.createReadStream(req.file.path);
 
-  _upload2.default.upload_file_to_s3(base64data, 'test.jpg').then(function (url) {
-    console.log('done');
-    // res.send(__dirname + '/../client/image.html');
-    res.end('<html><head></head><body><img src="' + url + '" /></body></html>');
-  });
+    _upload2.default.upload_file_to_s3(base64data, 'test.jpg').then(function (url) {
+        console.log('done');
+        // res.send(__dirname + '/../client/image.html');
+        res.end('<html><head></head><body><img src="' + url + '" /></body></html>');
+    });
+});
 
-  // if(!req.body.hasOwnProperty('img') ||
-  //    !req.body.hasOwnProperty('frames')) {
-  //   res.statusCode = 400;
-  //   return res.send('Error 400: Incomplete request');
-  // }
+app.get('/upload', function (req, res) {
 
-
-  // var imageStream = fs.createReadStream(req.file.path, { encoding: 'binary' })
-  //   , cloudStream = cloudinary.uploader.upload_stream( function() { res.redirect('/'); });
-
-  // imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
-
-  // fs.readFile(req.file.originalname, function (err, data) {
-  //   if (err) { throw err; }
-
-  //   var base64data = new Buffer(data, 'binary');
-
-  //   s3Upload.upload_file_to_s3(base64data, req.file.path)
-  //     .then(function () {
-  //         res.write('done!');
-  //     })
-
-  //   // var s3 = new AWS.S3();
-  //   // s3.client.putObject({
-  //   //   Bucket: 'banners-adxs',
-  //   //   Key: 'del2.txt',
-  //   //   Body: base64data,
-  //   //   ACL: 'public-read'
-  //   // },function (resp) {
-  //   //   console.log(arguments);
-  //   //   console.log('Successfully uploaded package.');
-  //   // });
-
-  // });
-
-  // star-wars-logo.png
+    res.send('<html><head></head><body><img src="https://s3.amazonaws.com/fb-selfie-explore/test.jpg" /></body></html>');
 });
 
 server.listen(port, function () {
-  console.log('[INFO] Listening on *:' + port);
+    console.log('[INFO] Listening on *:' + port);
 });
